@@ -1,4 +1,4 @@
-resource "aws_db_instance" "mysql" {
+resource "aws_db_instance" "mysql-roboshop" {
   identifier             = "mysql-${var.ENV}"
   allocated_storage      = 10
   engine                 = "mysql"
@@ -55,7 +55,7 @@ curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/a
 cd /tmp
 unzip -o mysql.zip
 cd mysql-main
-mysql -h ${aws_db_instance.mysql.address} -u${nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.secret-ssh.secret_string)["SSH_USERNAME"])} -p${nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.secret-ssh.secret_string)["SSH_PASSWD"])} <shipping.sql
+mysql -h ${aws_db_instance.mysql-roboshop.address} -u${nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.secret-ssh.secret_string)["SSH_USERNAME"])} -p${nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.secret-ssh.secret_string)["SSH_PASSWD"])} <shipping.sql
 EOF
   }
 }
@@ -65,5 +65,5 @@ resource "aws_route53_record" "mysql" {
   name    = "mysql-${var.ENV}.roboshop.internal"
   type    = "CNAME"
   ttl     = "300"
-  records = [aws_db_instance.mysql.address]
+  records = [aws_db_instance.mysql-roboshop.address]
 }
