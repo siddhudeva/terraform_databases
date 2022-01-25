@@ -3,9 +3,9 @@ resource "aws_elasticache_cluster" "Redisdb" {
   engine               = "redis"
   node_type            = "cache t3.micro"
   num_cache_nodes      = 1
-  engine_version       = "6.2"
+  engine_version       = "6.x"
   port                 = 6379
-  security_group_names = "aws_elasticache_subnet_group.subnet-redis.name"
+  security_group_name = aws_elasticache_subnet_group.subnet-redis.name
   security_group_ids   = [aws_security_group.redsg-private.id]
 }
 resource "aws_elasticache_subnet_group" "subnet-redis" {
