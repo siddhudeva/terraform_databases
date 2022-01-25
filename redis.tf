@@ -23,7 +23,7 @@ resource "aws_security_group" "redsg-private" {
     from_port        = 6379
     to_port          = 6379
     protocol         = "tcp"
-    cidr_blocks      = ["data.terraform_remote_state.vpc.outputs.PRIVATE_CIDR"]
+    cidr_blocks      = ["data.terraform_remote_state.vpc.outputs.private_subnet"]
   }
 
   egress {
