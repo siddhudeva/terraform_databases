@@ -9,7 +9,7 @@ resource "null_resource" "db-deploy" {
     type     = "ssh"
     user     = local.SSH_USERNAME
     password = local.SSH_PASSWORD
-    host     = aws_spot_instance_request.DB.spot_instance_id
+    host     = aws_spot_instance_request.DB.private_ip
   }
 
     inline = [
