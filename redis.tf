@@ -9,7 +9,7 @@ resource "aws_elasticache_cluster" "Redisdb" {
   security_group_ids   = [aws_security_group.redis-sg-private.id]
 }
 resource "aws_elasticache_subnet_group" "subnet-redis" {
-  name       = "${var.ENV}cache-subnet"
+  name       = "${var.ENV}-cache-subnet"
   subnet_ids = data.terraform_remote_state.vpc.outputs.PRIVATE_CIDR
 }
 
@@ -23,7 +23,7 @@ resource "aws_security_group" "redis-sg-private" {
     from_port        = 6379
     to_port          = 6379
     protocol         = "tcp"
-    cidr_blocks      = [data.terraform_remote_state.vpc.outputs.PRIVATE_CIDR]
+    cidr_blocks      = ["data.terraform_remote_state.vpc.outputs.PRIVATE_CIDR"]
   }
 
   egress {
