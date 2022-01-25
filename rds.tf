@@ -55,7 +55,7 @@ curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/a
 cd /tmp
 unzip -o mysql.zip
 cd mysql-main
-mysql -h ${aws_db_instance.mysql-roboshop.address} -u${nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.secret-ssh.secret_string)["SSH_USERNAME"])} -p${nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.secret-ssh.secret_string)["SSH_PASSWD"])} <shipping.sql
+sudo  mysql -h ${aws_db_instance.mysql-roboshop.address} -u${nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.secret-ssh.secret_string)["SSH_USERNAME"])} -p${nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.secret-ssh.secret_string)["SSH_PASSWD"])} <shipping.sql
 EOF
   }
 }
