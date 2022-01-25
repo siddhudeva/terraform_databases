@@ -14,7 +14,7 @@ resource "aws_db_instance" "mysql" {
 
 resource "aws_db_subnet_group" "mysqlsubnet" {
   name       = "main"
-  subnet_ids = [data.terraform_remote_state.vpc.outputs.private_subnet]
+  subnet_ids = data.terraform_remote_state.vpc.outputs.private_subnet
 
   tags = {
     Name = "mysql_${var.ENV}-user"
