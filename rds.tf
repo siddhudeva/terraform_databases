@@ -61,7 +61,7 @@ EOF
 }
 
 resource "aws_route53_record" "mysql" {
-  zone_id = data.terraform_remote_state.vpc.outputs.PRIVATE_HOSTED_ZONE_ID
+  zone_id = data.terraform_remote_state.vpc.outputs.PRIVATE_HOSTEDZONE_ID
   name    = "mysql-${var.ENV}.roboshop.internal"
   type    = "CNAME"
   ttl     = "300"
