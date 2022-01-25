@@ -11,5 +11,5 @@ resource "aws_spot_instance_request" "DB" {
 resource "aws_ec2_tag" "spot-ec2" {
   resource_id = aws_spot_instance_request.DB.spot_instance_id
   key         = "Name"
-  value       = "${var.DB_COMPONENT}-${var.ENV}-${count.index[0]}"
+  value       = "${var.DB_COMPONENT}-${var.ENV}-db"
 }
