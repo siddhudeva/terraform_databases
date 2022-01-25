@@ -7,12 +7,18 @@ resource "null_resource" "db-deploy" {
   provisioner "remote-exec" {
   connection { /////using provided connection details like credentials which is going to login and execute shell commands
     type     = "ssh"
-    user     = var.SSH_USERNAME
-    password = var.SSH_PASSWORD
-    host     = aws_spot_instance_request.DB.private_ip
+    user     = local.SSH_USERNAME
+    password = local.SSH_PASSWORD
+    host     = aws_spot_instance_request.DB.spot_instance_id
   }
+
     inline = [
-      "ansible-pull -U https://github.com/siddhudeva/ansible-1.git roboshop-pull.yml -e COMPONENT=${var.DB_COMPONENT} -e ENV = ${var.ENV}"
+      "ansible-pull -U https://github.com/raghudevopsb61/ansible.git roboshop-pull.yml -e COMPONENT=${var.DB_COMPONENT} -e ENV=${var.ENV}"
     ]
   }
+}
+
+locals {
+  SSH_USERNAME = var.SSH_USERNAME
+  SSH_PASSWORD = var.SSH_PASSWORD
 }
