@@ -6,14 +6,14 @@ resource "aws_elasticache_cluster" "Redisdb" {
   engine_version       = "6.2"
   port                 = 6379
   security_group_names = aws_elasticache_subnet_group.subnet-redis.name
-  security_group_ids   = [aws_security_group.redis-sg-private.id]
+  security_group_ids   = [aws_security_group.redsg-private.id]
 }
 resource "aws_elasticache_subnet_group" "subnet-redis" {
   name       = "${var.ENV}-cache-subnet"
   subnet_ids = data.terraform_remote_state.vpc.outputs.private_subnet
 }
 
-resource "aws_security_group" "redis-sg-private" {
+resource "aws_security_group" "redsg-private" {
   name        = "redis-sg-private"
   description = "redis-sg-private"
   vpc_id      = data.terraform_remote_state.vpc.outputs.VPC_ID
