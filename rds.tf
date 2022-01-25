@@ -9,15 +9,15 @@ resource "aws_db_instance" "mysql-roboshop" {
   password               = jsondecode(data.aws_secretsmanager_secret_version.secret-ssh.secret_string)["RDS_PASS"]
   skip_final_snapshot    = true
   db_subnet_group_name   = aws_db_subnet_group.mysqlsubnet.name
-  vpc_security_group_ids = [aws_db_subnet_group.mysqlsubnet.id]
+  vpc_security_group_ids = [aws_security_group.mysql.id]
 }
 
 resource "aws_db_subnet_group" "mysqlsubnet" {
-  name       = "main"
+  name       = "subnet-${var.ENV}"
   subnet_ids = data.terraform_remote_state.vpc.outputs.private_subnet
 
   tags = {
-    Name = "mysql-${var.ENV}"
+    Name = "subnet-${var.ENV}"
   }
 }
 
