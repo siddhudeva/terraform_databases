@@ -1,5 +1,5 @@
 resource "aws_db_instance" "mysql" {
-  identifier             = "mysql_${var.ENV}-user"
+  identifier             = "mysql-${var.ENV}"
   allocated_storage      = 10
   engine                 = "mysql"
   engine_version         = "5.7"
@@ -17,7 +17,7 @@ resource "aws_db_subnet_group" "mysqlsubnet" {
   subnet_ids = data.terraform_remote_state.vpc.outputs.private_subnet
 
   tags = {
-    Name = "mysql_${var.ENV}-user"
+    Name = "mysql-${var.ENV}"
   }
 }
 
