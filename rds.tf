@@ -20,7 +20,7 @@ resource "aws_db_subnet_group" "mysqlsubnet" {
   }
 }
 resource "aws_db_security_group" "mysql" {
-  name = "mysql-${var.ENV}" - sg
+  name = "mysql-${var.ENV}"
 
   ingress {
     description = "MysqlDB"
