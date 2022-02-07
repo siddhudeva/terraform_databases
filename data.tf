@@ -1,6 +1,6 @@
 data "aws_ami" "ami_ec2" {
   most_recent      = true
-  name_regex       = "base-ec2"
+  name_regex       = "base_ami"
   owners           = ["self"]
 }
 
