@@ -12,14 +12,14 @@ data "terraform_remote_state" "vpc" {
     region = "us-east-1"
   }
 }
-data "terraform_remote_state" "alb" {
-  backend = "s3"
-  config = {
-    bucket = "terraformbucket021"
-    key    = "vpc/${var.ENV}/alb/terraform.tfstate"
-    region = "us-east-1"
-  }
-}
+#data "terraform_remote_state" "alb" {
+#  backend = "s3"
+#  config = {
+#    bucket = "terraformbucket021"
+#    key    = "vpc/${var.ENV}/alb/terraform.tfstate"
+#    region = "us-east-1"
+#  }
+#}
 
 ////here we are trying to get secrets form aws secrets form aws secret manager
 data "aws_secretsmanager_secret" "Secrets" {

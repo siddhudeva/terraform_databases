@@ -5,7 +5,7 @@ variable "PRIVATE_SUBNET_ID" {}
 variable "VPC_ID" {}
 variable "CIDR_PRIVATE" {}
 variable "ALL_CIDR" {}
-variable "ZONE_ID" {}
+variable "PRIVATE_HOSTEDZONE_ID" {}
 variable "SSH_USERNAME" {}
 variable "SSH_PASSWORD" {}
 variable "DB_COMPONENT" {}

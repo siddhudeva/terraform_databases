@@ -1,9 +1,7 @@
-
-
 /// Security group for mongodb/rabbitmqdb
-resource "aws_security_group" "DB" {
-  name        = "${var.DB_COMPONENT}-sg-${var.ENV}"
-  description = "${var.DB_COMPONENT}-sg-${var.ENV}"
+resource "aws_security_group" "sg" {
+  name        = "${var.DB_COMPONENT}-${var.ENV}"
+  description = "${var.DB_COMPONENT}-${var.ENV}"
   vpc_id      = var.VPC_ID
 
   ingress {
@@ -28,6 +26,6 @@ resource "aws_security_group" "DB" {
   }
   /// as we know all outbound rules are open to internet
   tags = {
-    Name = "${var.DB_COMPONENT}-sg-public"
+    Name = "${var.DB_COMPONENT}-${var.ENV}"
   }
 }

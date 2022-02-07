@@ -23,7 +23,7 @@ resource "aws_db_subnet_group" "mysqlsubnet" {
 
 resource "aws_security_group" "mysql" {
   name        = "mysql-sg-${var.ENV}"
-  description = "smysqlsg-${var.ENV}"
+  description = "mysql-sg-${var.ENV}"
   vpc_id      = data.terraform_remote_state.vpc.outputs.VPC_ID
 
   ingress {
