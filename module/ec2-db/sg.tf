@@ -1,5 +1,5 @@
 /// Security group for mongodb/rabbitmqdb
-resource "aws_security_group" "sg" {
+resource "aws_security_group" "sg-db" {
   name        = "${var.DB_COMPONENT}-${var.ENV}"
   description = "${var.DB_COMPONENT}-${var.ENV}"
   vpc_id      = var.VPC_ID
