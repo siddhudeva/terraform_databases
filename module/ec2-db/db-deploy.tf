@@ -1,6 +1,9 @@
+'''
 /// null resource is actually will not do anything but it implements the standard resource lifecycle
+
 ///null resource equippeed with provisioner == provisioner is used to execute the commands in local and remote level and it also have a file provisioner that is used to copy files from local machine to remote machine.
-resource "null_resource" "db-deploy" {
+'''
+  resource "null_resource" "db-deploy" {
   triggers = {
     instance_ids = aws_spot_instance_request.DB.spot_instance_id
   }
